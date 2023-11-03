@@ -10,9 +10,8 @@ public class SubjectCreditBuilder {
         return new SubjectCreditBuilder();
     }
 
-    public SubjectCreditBuilder total(int total) {
-        this.total = total;
-        return this;
+    private void calcTotal() {
+        this.total = this.theory + this.design + (this.experiment / 2);
     }
 
     public SubjectCreditBuilder theory(int theory) {
@@ -31,6 +30,7 @@ public class SubjectCreditBuilder {
     }
 
     public SubjectCredit build() {
+        this.calcTotal();
         return new SubjectCredit(
                 this.total,
                 this.theory,
